@@ -1,13 +1,11 @@
 import './App.css'
-import HowItWorks from './components/howItWorks'
-import Navbar from './components/navbar'
+import Profile from './pages/Profile'
 
 function App() {
 
   return (
     <>
-      <Navbar></Navbar>
-      <HowItWorks></HowItWorks>
+      <Profile></Profile>
 
     </>
   )

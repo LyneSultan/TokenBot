@@ -1,4 +1,5 @@
 import { stepColors } from './../colors/stepColors';
+import CTA from './CTA';
 import Step from "./StepCard";
 const steps = [
   {
@@ -53,7 +54,10 @@ const HowItWorks = () => {
           />
         ))}
       </div>
+      <CTA></CTA>
+
     </div >
+
 
   );
 

@@ -31,8 +31,8 @@ const Profile = () => {
     <div className="pt-24 pb-16 px-4">
       <div className="container mx-auto">
 
-        <div className="bg-yellow-100/50 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 mb-4">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div className="bg-black backdrop-blur-sm border border-gray-800/50 rounded-2xl p-6 mb-4">
+          <div className="flex flex-row items-center md:items-start gap-6">
             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-purple-500">
               <img
                 src={USER_DATA.avatarUrl}
@@ -46,9 +46,9 @@ const Profile = () => {
                 Welcome back, {USER_DATA.name}!
               </h1>
             </div>
-
-            <CiEdit />
-
+            <div className='p-1 text-white bg-blue'>
+              <CiEdit />
+            </div>
           </div>
         </div>
 
@@ -78,7 +78,7 @@ const Profile = () => {
                       Created {new Date(token.createdAt).toLocaleDateString()}
                     </div>
 
-                    <button className="bg-red-500 hover:bg-red-600 rounded-full p-1 flex text-white items-center justify-center">
+                    <button className="bg-red-500 hover:bg-red-600 rounded p-1 flex text-white items-center justify-center">
                       <MdDelete />
                     </button>
                   </div>

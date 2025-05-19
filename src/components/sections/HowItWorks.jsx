@@ -1,13 +1,11 @@
 import HowItWorks from "../atoms/HowItWorks";
-import Navbar from "../atoms/NavBar";
 
 const HowItWorksSection = () => {
     return (
-     <>
-     <Navbar/>
-     <HowItWorks/>
-    
-     </>
+        <>
+            <HowItWorks />
+
+        </>
     )
 }
 export default HowItWorksSection;

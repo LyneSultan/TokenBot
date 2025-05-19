@@ -1,22 +1,22 @@
 
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import './App.css';
 
 
-import { Routes, Route } from "react-router-dom";
-
-
+import Navbar from "./components/atoms/NavBar";
 import HomeSection from './components/sections/HomeSection';
 import HowItWorksSection from './components/sections/HowItWorks';
 
 function App() {
- 
 
   return (
     <>
-     <Routes>
-      <Route path="/" element={<HomeSection />} />
-      <Route path="/how-it-works" element={<HowItWorksSection/>} />
-    </Routes>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomeSection />} />
+        <Route path="/how-it-works" element={<HowItWorksSection />} />
+      </Routes>
     </>
   )
 }

@@ -4,7 +4,6 @@ import Landing from "../atoms/Landing"
 const HomeSection = () => {
     return (
         <>
-        <Navbar/>
         <Landing/>
         </>
     )

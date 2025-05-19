@@ -1,17 +1,14 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import Home from './pages/Home';
+import Navbar from './components/navbar';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <h1 class="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-
-    </>
-  )
+    <div className="bg-[#0d0b1d] min-h-screen font-sans">
+      <Navbar></Navbar>
+      <Home />
+    </div>
+  );
 }
 
-export default App
+export default App;

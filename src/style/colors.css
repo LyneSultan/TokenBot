@@ -1,0 +1,22 @@
+:root {
+  --gradient-yellow-blue: linear-gradient(to right, #f5ff3b, #f6833b);
+  --gradient-pink-purple: linear-gradient(to right, #ec4899, #8b5cf6);
+  --primary-color: #facc15;
+  --secondary-color: #3b82f6;
+}
+
+.text-gradient-yellow-blue {
+  background: var(--gradient-yellow-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-primary {
+  background: var(--primary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-pink-purple {
+  background: var(--gradient-pink-purple);
+}

@@ -1,10 +1,9 @@
-import Navbar from "../atoms/NavBar"
-import Landing from "../atoms/Landing"
+import Landing from "../atoms/Landing";
 
 const HomeSection = () => {
     return (
         <>
-        <Landing/>
+            <Landing />
         </>
     )
 }

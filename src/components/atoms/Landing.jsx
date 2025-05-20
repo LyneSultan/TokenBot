@@ -9,6 +9,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { useState } from 'react';
 
 const steps = [
   {
@@ -96,23 +97,25 @@ const benefits = [
 // [import and data remain unchanged]
 
 const Step = ({ icon: Icon, title, description }) => (
-  <div className="p-5 rounded-xl bg-white border border-[#F3C623] shadow-md hover:shadow-lg transition">
-    <div className="w-10 h-10 bg-[#F3C623] text-white rounded-lg flex items-center justify-center mb-2">
-      <Icon size={20} />
+  <div className="p-7 rounded-2xl bg-white border border-[#F3C623] shadow-md hover:shadow-lg transition">
+    <div className="flex items-center gap-3 mb-2">
+      <div className="w-12 h-12 bg-[#F3C623] text-white rounded-full flex items-center justify-center mb-2">
+        <Icon size={25} />
+      </div>
+      <h3 className="text-xl font-semibold text-primary">{title}</h3>
     </div>
-    <h3 className="text-sm font-semibold text-[#1F2937] mb-1">{title}</h3>
     <p className="text-xs sm:text-sm text-[#4B5563]">{description}</p>
   </div>
 );
 
-const FeatureCard = ({ icon: Icon, title, text }) => (
-  <div className="p-5 bg-white border border-[#F3C623]/20 rounded-lg hover:shadow-md transition">
-    <div className="w-10 h-10 bg-[#F3C623] text-white rounded-lg flex items-center justify-center mb-2">
+const FeatureCard = ({ title, text }) => (
+  <div className="p-1 text-white  rounded-lg hover:shadow-md transition">
+    {/* <div className="w-10 h-10   flex items-center justify-center mb-2">
       <Icon size={20} />
-    </div>
-    <h4 className="text-sm font-semibold text-[#1F2937] mb-1">{title}</h4>
-    <p className="text-xs sm:text-sm text-[#4B5563]">{text}</p>
-  </div>
+    </div> */}
+    <h4 className="text-2xl font-semibold text-primary mb-3">{title}</h4>
+    <p className="text-l sm:text-sm text-grey">{text}</p>
+  </div >
 );
 
 const FAQItem = ({ question, answer }) => (
@@ -156,11 +159,9 @@ const Landing = () => {
       {/* Hero Section */}
       <section className="min-h-[80vh] px-6 sm:px-8 pt-10 pb-10 flex flex-col items-center justify-center text-center">
 
-        <h1 className="text-4xl font-bold">
+        <h1 className="text-4xl font-bold mb-4">
           <span className="text-black">Instantly Mint </span>
-          <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-            Solana Tokens
-          </span>
+          <span className="text-gradient-yellow-blue bg-clip-text text-transparent">  Solana Tokens </span>
         </h1>
 
 
@@ -181,7 +182,7 @@ const Landing = () => {
       </section>
 
       {/* How It Works */}
-      <section className="px-6 sm:px-8 py-10">
+      <section className="px-6 sm:px-8 py-10 mb-10">
         <div className="max-w-4xl mx-auto mb-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-[#1F2937] mb-2">
             How It Works
@@ -203,8 +204,10 @@ const Landing = () => {
         </div>
       </section>
 
+
+
       {/* Features */}
-      <section className="px-6 sm:px-8 py-10">
+      {/* <section className="px-6 sm:px-8 py-10">
         <div className="max-w-4xl mx-auto mb-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-[#1F2937] mb-2">
             Why Use TokenBot?
@@ -213,10 +216,53 @@ const Landing = () => {
             We make token creation effortless, secure, and instantly usable.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {features.map((f, i) => (
-            <FeatureCard key={i} icon={f.icon} title={f.title} text={f.text} />
-          ))}
+
+        <div className="container flex flex-col lg:flex-row items-center">
+      <div className="flex w-full ">
+        <img
+          src="/iphone.png"
+          alt="iPhone"
+          className="w-150 h-auto object-contain"
+        />
+      </div>
+
+      <div className="w-full">
+        {features.map((f, i) => (
+          <FeatureCard key={i} icon={f.icon} title={f.title} text={f.text} />
+        ))}
+      </div>
+    </div>
+
+      </section > */}
+      <section className="px-6 sm:px-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-5 text-[#1F2937]">
+          Why Use TokenBot?
+        </h2>
+        <div className="container mx-auto">
+          <div className="flex flex-col lg:flex-row items-center px-10 pt-10 bg-black text-white rounded-3xl">
+
+            {/* - Text */}
+            <div className="text-center lg:text-left max-w-md order-1 lg:order-1">
+              <h2 className="text-3xl font-bold">
+                We make token creation effortless, secure, and instantly usable.
+              </h2>
+            </div>
+
+            {/* - Carousel */}
+            <div className=" order-2 lg:order-3">
+              <Carousel features={features} />
+            </div>
+
+            {/* - Image */}
+            <div className="overflow-hidden order-3 lg:order-2">
+              <img
+                src="/iphone.png"
+                alt="iPhone"
+                className="w-165 object-cover"
+              />
+            </div>
+
+          </div>
         </div>
       </section>
 
@@ -303,11 +349,53 @@ const Landing = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white text-[#4B5563] text-center text-xs pt-5 pb-5 border-t border-[#F3C623]/20">
+      <footer className=" bg-[#F3C623] text-[#4B5563] text-center text-xs pt-5 pb-5 border-t border-[#F3C623]/20">
         © {new Date().getFullYear()} TokenBot. All rights reserved.
       </footer>
-    </div>
+    </div >
   );
 };
 
 export default Landing;
+
+const Carousel = ({ features }) => {
+  const [current, setCurrent] = useState(0);
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev === 0 ? features.length - 1 : prev - 1));
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev === features.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div className="w-full ">
+      {/* Feature Card */}
+      <div className="flex justify-center items-center h-72">
+        <FeatureCard
+          // icon={features[current].icon}
+          title={features[current].title}
+          text={features[current].text}
+        />
+      </div>
+
+      {/* Buttons */}
+      <div className="flex justify-start gap-3">
+        <button
+          onClick={prevSlide}
+          className=" transform -translate-y-1/2 bg-blue-600 text-white p-4 rounded-full"
+        >
+          ←
+        </button>
+        <button
+          onClick={nextSlide}
+          className=" transform -translate-y-1/2 bg-blue-600 text-white p-4 rounded-full"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  );
+};
+

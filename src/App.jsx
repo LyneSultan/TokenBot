@@ -1,11 +1,14 @@
 
 import { Route, Routes } from "react-router-dom";
 import './App.css';
+import './style/colors.css';
+import './style/general.css';
 
 
-import Navbar from "./components/atoms/NavBar";
-import HomeSection from './components/sections/HomeSection';
-import HowItWorksSection from './components/sections/HowItWorks';
+import Home from "./components/pages/home";
+import HowItWorks from "./components/pages/HowItWorks";
+import Profile from "./components/pages/Profile";
+import Navbar from "./components/sections/NavBar";
 
 function App() {
 
@@ -14,8 +17,9 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomeSection />} />
-        <Route path="/how-it-works" element={<HowItWorksSection />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/1" element={<Profile />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
       </Routes>
     </>
   )

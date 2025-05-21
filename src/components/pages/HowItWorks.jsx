@@ -1,10 +1,9 @@
-import React from "react";
 import {
-  Twitter,
-  MessageSquare,
-  Coins,
   BarChart3,
   CheckCircle,
+  Coins,
+  MessageSquare,
+  Twitter,
 } from "lucide-react";
 
 const HowItWorks = () => {
@@ -13,7 +12,7 @@ const HowItWorks = () => {
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 px-2">
-         
+
           <p className="text-sm sm:text-base text-[#4B5563] max-w-2xl mx-auto">
             Create a Solana token directly from your social media post in minutes. No code, no setup.
           </p>

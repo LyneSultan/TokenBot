@@ -23,9 +23,9 @@ const faqs = [
 ];
 
 const FAQItem = ({ question, answer }) => (
-  <div className="border-b border-[#F3C623]/20 last:border-0">
+  <div className="border-b border-primary last:border-0">
     <details className="group">
-      <summary className="flex justify-between items-center cursor-pointer py-3 text-sm sm:text-base text-[#1F2937] font-medium hover:text-[#F3C623] transition-colors">
+      <summary className="flex justify-between items-center cursor-pointer py-3 text-sm sm:text-base text-primary font-medium hover:text-[#F3C623] transition-colors">
         <span>{question}</span>
         <svg
           className="w-4 h-4 transition-transform duration-200 group-open:rotate-180"
@@ -59,7 +59,7 @@ const QuestionsSection = () => {
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto bg-white rounded-xl border border-[#F3C623]/30 divide-y divide-[#F3C623]/20 px-4 py-2 sm:p-4">
+        <div className="max-w-3xl mx-auto bg-white rounded-xl border border-primary divide-y divide-[#F3C623]/20 px-4 py-2 sm:p-4">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -69,11 +69,11 @@ const QuestionsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-6 px-2">
-          <p className="text-xs sm:text-sm text-[#4B5563] mb-3">
+        <div className="text-center mt-6 px-2 flex items-center justify-center gap-3" >
+          <p className="text-xs sm:text-sm text-[#4B5563]">
             Still have questions?
           </p>
-          <button className="inline-flex items-center text-[#F3C623] font-semibold text-sm hover:text-yellow-500 transition-colors">
+          <button className="inline-flex items-center text-primary font-semibold text-sm hover:text-yellow-500 transition-colors">
             Contact Support
             <svg
               className="ml-2 w-4 h-4"

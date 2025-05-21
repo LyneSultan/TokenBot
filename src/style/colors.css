@@ -1,22 +1,97 @@
 :root {
-  --gradient-yellow-blue: linear-gradient(to right, #f5ff3b, #f6833b);
+  /* Gradients */
+  --gradient-yellow-blue: linear-gradient(to right, #1a85ff, #e3fe1a);
   --gradient-pink-purple: linear-gradient(to right, #ec4899, #8b5cf6);
-  --primary-color: #facc15;
+
+  /* Primary Colors */
+  --primary-color: #2d5bff;
+  /* Violet */
+  --primary-color-dark: #ea6e08;
+  /* Orange */
+  --bg-primary: #2d5bff;
+  --bg-primary-hover: #1f1d71;
+
+  /* Secondary Colors */
   --secondary-color: #3b82f6;
+
+  /* Text Colors */
+  --text-dark: #000000;
+  --text-muted: #4B5563;
+  --text-highlight: #1a85ff;
+  --text-white: #ffffff;
+
+  /* Backgrounds */
+  --color-section-bg: #fdf8e3;
+  /* Light background to complement yellow */
 }
 
-.text-gradient-yellow-blue {
+/* TEXT STYLES */
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
+}
+
+.text-gradient {
   background: var(--gradient-yellow-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-primary {
-  background: var(--primary-color);
+.text-gradient-alt {
+  background: var(--gradient-pink-purple);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-pink-purple {
+.text-dark {
+  color: var(--text-dark);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-highlight {
+  color: var(--text-highlight);
+}
+
+.text-white {
+  color: var(--text-white);
+}
+
+/* BACKGROUND STYLES */
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+.bg-gradient {
+  background: var(--gradient-yellow-blue);
+}
+
+.bg-gradient-alt {
   background: var(--gradient-pink-purple);
+}
+
+.bg-primary-hover:hover {
+  background-color: var(--bg-primary-hover);
+}
+
+/* BORDER STYLES */
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+.border-secondary {
+  border-color: var(--secondary-color);
+}
+
+.border-gradient {
+  border-image: var(--gradient-yellow-blue) 1;
 }

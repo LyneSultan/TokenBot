@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import TokenCard from '../atoms/TokenCard';
+import TokenCard from '../../atoms/TokenCard';
 
 // mock data
 const FEATURED_TOKENS = [

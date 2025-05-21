@@ -1,9 +1,9 @@
-import BenefitSection from "../sections/BenefitSection";
-import HeroSection from "../sections/HeroSection";
-import Instructions from "../sections/Instructions";
-import QuestionsSection from "../sections/QuestionsSection";
-import FeaturedTokens from "../sections/TokensSection";
-import WhySection from "../sections/WhySection";
+import BenefitSection from "../sections/home/BenefitSection";
+import HeroSection from "../sections/home/HeroSection";
+import Instructions from "../sections/home/Instructions";
+import QuestionsSection from "../sections/home/QuestionsSection";
+import FeaturedTokens from "../sections/home/TokensSection";
+import WhySection from "../sections/home/WhySection";
 
 const Home = () => {
   return (

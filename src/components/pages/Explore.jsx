@@ -1,88 +1,39 @@
 import { Search } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchFeaturedTokens } from '../../services/fetchAllTokens';
 import TokenCard from '../atoms/TokenCard';
 
-// Mock data for tokens
-const TOKENS = [
-  {
-    id: 'rocket',
-    name: 'RocketToken',
-    ticker: 'ROCKET',
-    creator: 'crypto_creator',
-    logoUrl: 'https://images.pexels.com/photos/6636159/pexels-photo-6636159.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.045,
-    priceChange: 12.5,
-  },
-  {
-    id: 'pixel',
-    name: 'PixelVerse',
-    ticker: 'PIXEL',
-    creator: 'pixelartist',
-    logoUrl: 'https://images.pexels.com/photos/5702341/pexels-photo-5702341.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.087,
-    priceChange: 8.3,
-  },
-  {
-    id: 'cosmic',
-    name: 'CosmicCoin',
-    ticker: 'COSMIC',
-    creator: 'space_nerd',
-    logoUrl: 'https://images.pexels.com/photos/5702347/pexels-photo-5702347.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.016,
-    priceChange: -2.7,
-  },
-  {
-    id: 'byte',
-    name: 'ByteToken',
-    ticker: 'BYTE',
-    creator: 'techdev',
-    logoUrl: 'https://images.pexels.com/photos/7256921/pexels-photo-7256921.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.103,
-    priceChange: 5.4,
-  },
-  {
-    id: 'galaxy',
-    name: 'GalaxyToken',
-    ticker: 'GLXY',
-    creator: 'crypto_creator',
-    logoUrl: 'https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.052,
-    priceChange: -1.3,
-  },
-  {
-    id: 'unity',
-    name: 'UnityToken',
-    ticker: 'UNITY',
-    creator: 'community_builder',
-    logoUrl: 'https://images.pexels.com/photos/1509534/pexels-photo-1509534.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.073,
-    priceChange: 3.8,
-  },
-  {
-    id: 'spark',
-    name: 'SparkToken',
-    ticker: 'SPARK',
-    creator: 'innovation_hub',
-    logoUrl: 'https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.031,
-    priceChange: 9.2,
-  },
-  {
-    id: 'flow',
-    name: 'FlowToken',
-    ticker: 'FLOW',
-    creator: 'defi_wizard',
-    logoUrl: 'https://images.pexels.com/photos/924824/pexels-photo-924824.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    price: 0.094,
-    priceChange: 6.7,
-  }
-];
-
 const ExploreTokensPage = () => {
+  const [tokens, setTokens] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
 
-  const filteredTokens = TOKENS.filter(token =>
-    token.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  useEffect(() => {
+    const loadTokens = async () => {
+      try {
+        const data = await fetchFeaturedTokens();
+        const tokens = data.tokens;
+        console.log(tokens);
+        const transformedTokens = tokens.map(token => ({
+          id: token.id,
+          name: token.name,
+          ticker: token.meta.ticker,
+          creator: token.meta.username,
+          logoUrl: `https://twitter-bot-uyo9.onrender.com/${token.meta.image}`,
+        }));
+
+        setTokens(transformedTokens);
+      } catch (error) {
+        console.error('Failed to fetch tokens:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadTokens();
+  }, []);
+
+  const filteredTokens = tokens.filter(token =>
     token.ticker.toLowerCase().includes(searchTerm.toLowerCase()) ||
     token.creator.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -114,7 +65,9 @@ const ExploreTokensPage = () => {
         </div>
 
         {/* Results */}
-        {filteredTokens.length > 0 ? (
+        {loading ? (
+          <div className="text-center text-white">Loading tokens...</div>
+        ) : filteredTokens.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredTokens.map(token => (
@@ -126,7 +79,7 @@ const ExploreTokensPage = () => {
             </p>
           </>
         ) : (
-          <div className="text-center py-12  backdrop-blur-sm border border-gray-800/50 rounded-xl">
+          <div className="text-center py-12 backdrop-blur-sm border border-gray-800/50 rounded-xl">
             <Search className="w-12 h-12 text-gray-600 mx-auto mb-3" />
             <h3 className="text-xl font-medium text-white mb-2">No tokens found</h3>
             <p className="text-gray-400">

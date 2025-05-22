@@ -18,12 +18,12 @@ const TokenCard = ({ token }) => {
               <h3 className="text-lg font-bold text-white">{token.name}</h3>
               <p className="text-sm text-gray-300">${token.ticker}</p>
             </div>
-            <div className={`text-right ${token.priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+            {/* <div className={`text-right ${token.priceChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
               <div className="text-lg font-bold">${token.price.toFixed(4)}</div>
               <div className="text-sm flex items-center justify-end">
                 {token.priceChange >= 0 ? '+' : ''}{token.priceChange}%
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

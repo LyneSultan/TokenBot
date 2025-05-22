@@ -1,41 +1,31 @@
 import { Calendar, Trash2 } from 'lucide-react';
-import { useState } from 'react';
-
-const USER_DATA = {
-  name: 'John Doe',
-  username: 'johndoe',
-  avatarUrl:
-    'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1600',
-  bio: 'Crypto enthusiast and token creator. Building the future of decentralized finance.',
-  joinedDate: 'March 2024',
-  tokens: [
-    {
-      id: 'demo1',
-      name: 'DemoToken',
-      ticker: 'DEMO',
-      createdAt: '2025-03-15',
-      logoUrl:
-        'https://images.pexels.com/photos/8369648/pexels-photo-8369648.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      price: 0.045,
-      priceChange: 12.5,
-    },
-    {
-      id: 'test1',
-      name: 'TestToken',
-      ticker: 'TEST',
-      createdAt: '2025-03-10',
-      logoUrl:
-        'https://images.pexels.com/photos/8369650/pexels-photo-8369650.jpeg?auto=compress&cs=tinysrgb&w=1600',
-      price: 0.032,
-      priceChange: -2.1,
-    },
-  ],
-};
+import { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { fetchUserProfile } from '../../services/fetchUserProfile';
 
 const ProfilePage = () => {
+  const [userData, setUserData] = useState(null);
   const [sortOrder, setSortOrder] = useState('latest');
+  const location = useLocation();
 
-  const sortedTokens = [...USER_DATA.tokens].sort((a, b) => {
+  // Extract query params
+  const queryParams = new URLSearchParams(location.search);
+  const userId = queryParams.get("userId");
+
+
+  useEffect(() => {
+    console.log(userId);
+    const loadUserData = async () => {
+      const data = await fetchUserProfile(userId);
+      // console.log(data);
+      setUserData(data);
+    };
+    loadUserData();
+  }, []);
+
+  if (!userData) return <div className="pt-24 text-center">Loading...</div>;
+
+  const sortedTokens = [...userData.tokens].sort((a, b) => {
     const dateA = new Date(a.createdAt);
     const dateB = new Date(b.createdAt);
     return sortOrder === 'latest' ? dateB - dateA : dateA - dateB;
@@ -49,15 +39,15 @@ const ProfilePage = () => {
           <div className="flex items-center gap-6 mb-4">
             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-primary shadow-sm">
               <img
-                src={USER_DATA.avatarUrl}
-                alt={USER_DATA.name}
+                src={userData.avatarUrl}
+                alt={userData.name}
                 className="w-full h-full object-cover"
               />
             </div>
 
             <div className="flex-grow">
-              <h1 className="text-2xl font-bold">{USER_DATA.name}</h1>
-              <p className="text-gray-600 text-sm">@{USER_DATA.username}</p>
+              <h1 className="text-2xl font-bold">{userData.name}</h1>
+              <p className="text-gray-600 text-sm">@{userData.username}</p>
             </div>
 
             <button className="px-4 py-2 bg-primary hover:bg-purple-700 text-white rounded-lg text-sm transition-colors">
@@ -65,11 +55,11 @@ const ProfilePage = () => {
             </button>
           </div>
 
-          <p className="text-gray-700 mb-3">{USER_DATA.bio}</p>
+          <p className="text-gray-700 mb-3">{userData.bio}</p>
 
           <div className="flex items-center gap-2 text-sm text-gray-500">
             <Calendar className="w-4 h-4" />
-            <span>Joined {USER_DATA.joinedDate}</span>
+            <span>Joined {userData.joinedDate}</span>
           </div>
         </div>
 

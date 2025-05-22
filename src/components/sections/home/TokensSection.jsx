@@ -1,5 +1,4 @@
 import { ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TokenCard from '../../atoms/TokenCard';
 
@@ -45,7 +44,6 @@ const FEATURED_TOKENS = [
 ];
 
 const FeaturedTokens = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
 
   return (
     <section className="py-20 px-4">

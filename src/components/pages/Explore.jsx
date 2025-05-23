@@ -66,7 +66,7 @@ const ExploreTokensPage = () => {
         </div>
 
         {loading ? (
-          <div className="text-center text-white">Loading tokens...</div>
+          <div className="text-center">Loading tokens...</div>
         ) : filteredTokens.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

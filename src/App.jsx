@@ -6,11 +6,14 @@ import './style/general.css';
 import ExploreTokensPage from "./components/pages/Explore";
 import Home from "./components/pages/home";
 import HowItWorks from "./components/pages/HowItWorks";
+import NotFound from "./components/pages/NotFound";
 import Profile from "./components/pages/Profile";
 import Footer from "./components/sections/Footer";
 import Navbar from "./components/sections/NavBar";
 
 function App() {
+
+
   return (
     <>
       <Navbar />
@@ -20,6 +23,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/explore" element={<ExploreTokensPage />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

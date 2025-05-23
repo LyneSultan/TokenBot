@@ -1,30 +1,32 @@
-import { Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { fetchFeaturedTokens } from '../../services/fetchAllTokens';
-import TokenCard from '../atoms/TokenCard';
+import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
+import { fetchFeaturedTokens } from "../../services/fetchAllTokens";
+import TokenCard from "../atoms/TokenCard";
+import TokenDetailsModal from "../atoms/TokenDetailsModal";
 
 const ExploreTokensPage = () => {
   const [tokens, setTokens] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
+  const [selectedToken, setSelectedToken] = useState(null);
 
   useEffect(() => {
     const loadTokens = async () => {
       try {
         const data = await fetchFeaturedTokens();
-        const tokens = data.tokens;
-        console.log(tokens);
-        const transformedTokens = tokens.map(token => ({
+        const transformedTokens = data.tokens.map((token) => ({
           id: token.id,
           name: token.name,
           ticker: token.meta.ticker,
           creator: token.meta.username,
           logoUrl: `https://twitter-bot-uyo9.onrender.com/${token.meta.image}`,
+          description: token.meta.description || "",
+          network: token.meta.network || "",
+          marketCap: token.meta.marketCap || "",
         }));
-
         setTokens(transformedTokens);
       } catch (error) {
-        console.error('Failed to fetch tokens:', error);
+        console.error("Failed to fetch tokens:", error);
       } finally {
         setLoading(false);
       }
@@ -33,7 +35,7 @@ const ExploreTokensPage = () => {
     loadTokens();
   }, []);
 
-  const filteredTokens = tokens.filter(token =>
+  const filteredTokens = tokens.filter((token) =>
     token.ticker.toLowerCase().includes(searchTerm.toLowerCase()) ||
     token.creator.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -48,7 +50,6 @@ const ExploreTokensPage = () => {
           </p>
         </div>
 
-        {/* Search and Filters */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row gap-4 mb-6">
             <div className="relative flex-grow">
@@ -64,14 +65,13 @@ const ExploreTokensPage = () => {
           </div>
         </div>
 
-        {/* Results */}
         {loading ? (
           <div className="text-center text-white">Loading tokens...</div>
         ) : filteredTokens.length > 0 ? (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredTokens.map(token => (
-                <TokenCard key={token.id} token={token} />
+              {filteredTokens.map((token) => (
+                <TokenCard key={token.id} token={token} onClick={() => setSelectedToken(token)} />
               ))}
             </div>
             <p className="flex justify-center mt-6 text-primary cursor-pointer font-semibold text-lg transition-colors">
@@ -82,12 +82,14 @@ const ExploreTokensPage = () => {
           <div className="text-center py-12 backdrop-blur-sm border border-gray-800/50 rounded-xl">
             <Search className="w-12 h-12 text-gray-600 mx-auto mb-3" />
             <h3 className="text-xl font-medium text-white mb-2">No tokens found</h3>
-            <p className="text-gray-400">
-              Try adjusting your search or filter criteria
-            </p>
+            <p className="text-gray-400">Try adjusting your search or filter criteria</p>
           </div>
         )}
       </div>
+
+      {selectedToken && (
+        <TokenDetailsModal token={selectedToken} onClose={() => setSelectedToken(null)} />
+      )}
     </div>
   );
 };

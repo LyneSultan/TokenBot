@@ -1,6 +1,8 @@
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import TokenCard from '../../atoms/TokenCard';
+import TokenDetailsModal from '../../atoms/TokenDetailsModal';
 
 // mock data
 const FEATURED_TOKENS = [
@@ -30,7 +32,6 @@ const FEATURED_TOKENS = [
     logoUrl: 'https://images.pexels.com/photos/5702347/pexels-photo-5702347.jpeg?auto=compress&cs=tinysrgb&w=1600',
     price: 0.016,
     priceChange: -2.7,
-
   },
   {
     id: 'byte',
@@ -44,6 +45,7 @@ const FEATURED_TOKENS = [
 ];
 
 const FeaturedTokens = () => {
+  const [selectedToken, setSelectedToken] = useState(null);
 
   return (
     <section className="py-20 px-4">
@@ -64,15 +66,19 @@ const FeaturedTokens = () => {
           </Link>
         </div>
 
-
         {/* Token grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {FEATURED_TOKENS.map((token) => (
-            <TokenCard key={token.id} token={token} />
+            <TokenCard key={token.id} token={token} onClick={() => setSelectedToken(token)} />
           ))}
         </div>
       </div>
+
+      {selectedToken && (
+        <TokenDetailsModal token={selectedToken} onClose={() => setSelectedToken(null)} />
+      )}
     </section>
   );
 };
+
 export default FeaturedTokens;

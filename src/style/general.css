@@ -1,0 +1,24 @@
+.button {
+  background: linear-gradient(to right, #facc15, #3b82f6);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  /* rounded corners */
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(58, 130, 246, 0.4);
+  user-select: none;
+}
+
+.button:hover {
+  background: linear-gradient(to right, #3b82f6, #facc15);
+  transform: scale(1.05);
+}
+
+.button:focus {
+  outline: 2px solid #facc15;
+  outline-offset: 2px;
+}

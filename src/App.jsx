@@ -1,14 +1,34 @@
-import React from 'react';
-import Home from './pages/Home';
-import Navbar from './components/navbar';
+
+import { Route, Routes } from "react-router-dom";
+import './App.css';
+import './style/colors.css';
+import './style/general.css';
+
+
+import ExploreTokensPage from "./components/pages/Explore";
+import Home from "./components/pages/home";
+import HowItWorks from "./components/pages/HowItWorks";
+import Profile from "./components/pages/Profile";
+import Footer from "./components/sections/Footer";
+import Navbar from "./components/sections/NavBar";
 
 function App() {
+
   return (
-    <div className="bg-[#0d0b1d] min-h-screen font-sans">
-      <Navbar></Navbar>
-      <Home />
-    </div>
-  );
+    <>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/explore" element={<ExploreTokensPage />} />
+        <Route path="/how-it-works" element={<HowItWorks />} />
+      </Routes>
+
+      <Footer />
+
+    </>
+  )
 }
 
 export default App;
